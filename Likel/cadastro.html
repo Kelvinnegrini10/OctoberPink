@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="icon.jpg" type="image/x-icon">
+    <title>Cadastro - OutubroRosa2024</title>
+</head>
+<body>
+    <header>
+        <h1>Cadastre-se</h1>
+    </header>
+
+
+
+    <div class="container">
+        <p>Preencha os dados abaixo para criar sua conta:</p>
+
+        <div class="login-form">
+            <form id="cadastroForm" class="cadastro-form">
+                <div class="form-group">
+                    <label for="username">Nome de usuário</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Senha</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">Confirme a senha</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" required>
+                </div>
+                <button type="submit" class="btn cadastro-btn">Cadastrar</button>
+            </form>
+        </div>
+        
+        <div id="message" class="message"></div>
+    </div>
+
+    <footer>
+        <p>&copy; Outubro Rosa 2024. Todos os direitos reservados.</p>
+        <div class="social-media">
+            <a href="https://www.instagram.com/outubro_rosa_2023?igsh=Z2xibHo0bHEyZzY1" target="_blank">Instagram</a>
+        </div>
+        <p>Email: <a href="mailto:contato@doarbem.org">outubroRosa.org</a> | Telefone: <a href="tel:(11)1234-5678">(11) 1234-5678</a></p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+   
+let users = JSON.parse(localStorage.getItem('users')) || [];
+
+function isValidEmail(email) {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+}
+
+function isPasswordStrong(password) {
+   
+    const re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+    return re.test(password);
+}
+
+document.getElementById('cadastroForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent default form submission
+
+    const username = document.getElementById('username').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('confirmPassword').value;
+
+    
+    if (username.length < 3) {
+        alert('O nome de usuário deve ter pelo menos 3 caracteres.');
+        return;
+    }
+
+    if (!isValidEmail(email)) {
+        alert('Por favor, insira um endereço de e-mail válido.');
+        return;
+    }
+
+    if (!isPasswordStrong(password)) {
+        alert('A senha deve ter pelo menos 8 caracteres, incluindo uma letra maiúscula, uma minúscula e um número.');
+        return;
+    }
+
+    if (password !== confirmPassword) {
+        alert('As senhas não coincidem.');
+        return;
+    }
+
+ 
+    if (users.some(user => user.username === username || user.email === email)) {
+        alert('Este nome de usuário ou e-mail já está em uso.');
+        return;
+    }
+
+    // Add new user
+    const newUser = {
+        username: username,
+        email: email,
+        password: password 
+    };
+
+    users.push(newUser);
+    localStorage.setItem('users', JSON.stringify(users));
+
+    alert('Cadastro realizado com sucesso!');
+    window.location.href = 'index.html';
+});
+    </script>
+</body>
+</html>

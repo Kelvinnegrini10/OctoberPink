@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="icon.jpg" type="image/x-icon">
+    <title>Recuperar Senha - OutubroRosa2024</title>
+</head>
+<body>
+    <header>
+        <h1>Recuperar Senha</h1>
+    </header>
+
+    <div class="container">
+        <p>Insira seu e-mail para receber instruções de recuperação de senha:</p>
+
+        <div class="recover-form">
+            <form id="recoverForm">
+                <div class="form-group">
+                    <label for="email">E-mail:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <button type="submit" class="btn">Enviar</button>
+            </form>
+        </div>
+
+        <div id="message" class="message"></div>
+    </div>
+
+    <footer>
+        <p>&copy; Outubro Rosa 2024. Todos os direitos reservados.</p>
+        <div class="social-media">
+            <a href="https://www.instagram.com/outubro_rosa_2023?igsh=Z2xibHo0bHEyZzY1" target="_blank">Instagram</a>
+        </div>
+        <p>Email: <a href="mailto:contato@doarbem.org">outubroRosa.org</a> | Telefone: <a href="tel:(11)1234-5678">(11) 1234-5678</a></p>
+    </footer>
+
+    <script src="/JS/script.js"></script>
+    <script>
+        document.getElementById('recoverForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Impede o envio padrão do formulário
+
+            // Aqui você pode adicionar lógica para enviar um e-mail de recuperação
+            // Por enquanto, redireciona para a página inicial
+            alert('Instruções de recuperação de senha enviadas para ' + document.getElementById('email').value);
+            window.location.href = 'index.html';
+        });
+    </script>
+</body>
+</html>

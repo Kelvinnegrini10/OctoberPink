@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="icon.jpg" type="image/x-icon">
+    <title>Login - OutubroRosa2024</title>
+</head>
+<body>
+    <header>
+        <h1>Acesse Sua Conta</h1>
+    </header>
+
+    <div class="container">
+        <p>Bem-vindo(a)! Entre na sua conta para continuar contribuindo para a luta contra o câncer de mama.</p>
+
+        <form id="loginForm" class="login-form">
+            <div class="form-group">
+                <label for="username">Nome de usuário</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Senha</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit" class="btn login-btn">Entrar</button>
+        </form>
+                <p><a href="recuperar.html">Esqueceu sua senha?</a></p>
+                <p>Ainda não tem uma conta? <a href="cadastro.html">Cadastre-se!</a></p>
+            </form>
+        </div>
+        
+        <div id="message" class="message"></div>
+    </div>
+
+    <footer>
+        <p>&copy; Outubro Rosa 2024. Todos os direitos reservados.</p>
+        <div class="social-media">
+            <a href="https://www.instagram.com/outubro_rosa_2023?igsh=Z2xibHo0bHEyZzY1" target="_blank">Instagram</a>
+        </div>
+        <p>Email: <a href="mailto:contato@doarbem.org">outubroRosa.org</a> | Telefone: <a href="tel:(11)1234-5678">(11) 1234-5678</a></p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+       // Simulated user database (in a real application, this would be server-side)
+const users = [
+    { username: 'kelvinnegrini02@gmail.com', password: 'senha123' },
+    { username: 'liviammonteiro2112@gmail.com', password: 'abc456' }
+];
+
+// Function to check if the credentials are valid
+function authenticateUser(username, password) {
+    return users.some(user => user.username === username && user.password === password);
+}
+
+document.getElementById('loginForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent default form submission
+
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+    if (authenticateUser(username, password)) {
+        // Authentication successful
+        alert('Login bem-sucedido!');
+        window.location.href = 'INDEX.HTML';
+    } else {
+        // Authentication failed
+        alert('Nome de usuário ou senha incorretos. Por favor, tente novamente.');
+    }
+});
+    </script>
+</body>
+</html>
+
